@@ -1,0 +1,36 @@
+{
+  "finetune": {
+    "log_interval": 50,
+    "eval_interval": 500,
+    "epochs": 5000,
+    "learning_rate": 5e-5,
+    "betas": [0.8, 0.99],
+    "eps": 1e-9,
+    "batch_size": 8,
+    "fp16_run": true,
+    "lr_decay": 0.9998,
+    "segment_size": 8192,
+    "freeze_encoder": true,
+    "freeze_decoder": false
+  },
+  "data": {
+    "sampling_rate": 22050,
+    "filter_length": 1024,
+    "hop_length": 256,
+    "win_length": 1024,
+    "n_mel_channels": 80,
+    "mel_fmin": 0.0,
+    "mel_fmax": null,
+    "add_blank": true,
+    "text_cleaners": ["persian_cleaners"],
+    "max_wav_value": 32768.0
+  },
+  "augmentation": {
+    "speed_perturbation": true,
+    "speed_range": [0.9, 1.1],
+    "pitch_shift": true,
+    "pitch_range": [-2, 2],
+    "add_noise": false,
+    "noise_snr_db": 20
+  }
+}

@@ -19,9 +19,9 @@ echo "Speaker: $SPEAKER_NAME"
 echo "This will take 1-2 hours"
 echo ""
 
-if [ ! -f "checkpoints/vits_persian_final.pth" ]; then
+if [ ! -f "../checkpoints/vits_persian_final.pth" ]; then
     echo "❌ Base model not found"
-    echo "Run Phase 1 first: bash train_vits.sh 100000"
+    echo "Run Phase 1 first: bash training/train_vits.sh 100000"
     exit 1
 fi
 
@@ -31,15 +31,15 @@ if [ ! -f "$VOICE_SAMPLE" ]; then
 fi
 
 echo "Starting fine-tuning..."
-python3 finetuning/finetune_voice.py \
-    --base_model checkpoints/vits_persian_final.pth \
-    --voice_sample "$VOICE_SAMPLE" \
+python3 finetune_voice.py \
+    --base_model ../checkpoints/vits_persian_final.pth \
+    --voice_sample "../$VOICE_SAMPLE" \
     --speaker_name "$SPEAKER_NAME" \
-    --output_path "checkpoints/voice_clones/${SPEAKER_NAME}.pth" \
+    --output_path "../checkpoints/voice_clones/${SPEAKER_NAME}.pth" \
     --iterations 10000 \
     --learning_rate 5e-5
 
 echo "✅ Fine-tuning complete!"
 echo "Voice model saved to: checkpoints/voice_clones/${SPEAKER_NAME}.pth"
 echo ""
-echo "Next: bash synthesize.sh 'متن فارسی' $SPEAKER_NAME output.wav"
+echo "Next: bash ../synthesize.sh 'متن فارسی' $SPEAKER_NAME output.wav"
